@@ -13,7 +13,7 @@ class Bilibili(object):
     __ver = '0.98.72'
     __ua = 'Biligrab / ' + __ver + ' (cnbeining@gmail.com)'
     __headers = {'User-Agent': __ua}
-    __api_url = 'https://api.bilibili.com/'
+    __api_url = 'http://api.bilibili.com/'
 
     @staticmethod
     def __string_sign(string):
