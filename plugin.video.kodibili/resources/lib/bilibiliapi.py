@@ -23,9 +23,9 @@ class BiliBiliAPI(object):
     @staticmethod
     def __calc_sign(params):
         return BiliBiliAPI.__string_sign('&'.join([unicode(name) + '=' +
-                                                urllib.quote(unicode(params[name]).encode('utf-8'))
-                                                for name in sorted(params)]) +
-                                      BiliBiliAPI.__secret_key)
+                                                   urllib.quote(unicode(params[name]).encode('utf-8'))
+                                                   for name in sorted(params)]) +
+                                         BiliBiliAPI.__secret_key)
 
     @staticmethod
     def __calc_params(params):
