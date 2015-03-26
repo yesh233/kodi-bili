@@ -22,8 +22,8 @@ def show_index_subjects():
 
 @plugin.route('/subject/<type_idx>/')
 def show_index_subject(type_idx):
-    pass
-
+    items = [{'label': item.get_title()} for item in bilindex.get_subject_list(type_idx)]
+    return items
 
 @plugin.route('/list/<type_idx>/')
 def show_list(type_idx):
