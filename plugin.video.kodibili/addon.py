@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from xbmcswift2 import Plugin
+from xbmcswift2 import Plugin, xbmc
 from resources.lib.bilibiliapi import BiliBiliAPI
 bilindex = BiliBiliAPI.get_index()
 plugin = Plugin()
@@ -31,7 +31,8 @@ def show_index_subject(type_idx):
 @plugin.route('/list/<type_idx>/')
 def show_list(type_idx):
     bilist = BiliBiliAPI.get_list(type_idx)
-    items = [{'label': item.get_title()} for item in bilist.get_list()]
+    items = [{'label': item.get_title(), 'path': plugin.url_for('show_play', aid=item.get_aid())}
+             for item in bilist.get_list()]
     return items
 
 
@@ -39,7 +40,8 @@ def show_list(type_idx):
 def show_play(aid):
     avitem = BiliBiliAPI.get_av_item(aid)
     if avitem.get_pages() == 1:
-        plugin.set_resolved_url(BiliBiliAPI.get_url(avitem.get_cid()))
+        player = xbmc.Player()
+        player.play(BiliBiliAPI.get_url(avitem.get_cid()))
 
 if __name__ == '__main__':
     plugin.run()
