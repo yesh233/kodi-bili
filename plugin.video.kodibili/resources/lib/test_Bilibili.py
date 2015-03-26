@@ -37,3 +37,9 @@ class BiliBiliIndexTestCase(unittest.TestCase):
 
     def test_bilibiliindex(self):
         self.assertEqual(self.__bilindex.get_names()[0][0], u'动画')
+
+
+class BiliBiliAVItemTestCase(unittest.TestCase):
+    def test(self):
+        print BiliBiliAPI.api('view', {'id': 2145972}).keys()
+

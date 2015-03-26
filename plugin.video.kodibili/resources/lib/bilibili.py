@@ -3,18 +3,11 @@
 __author__ = 'Yang'
 
 
-class BiliBiliListItem(object):
+class BiliBiliItem(object):
     def __init__(self, item):
-        self.__aid = item['aid']
         self.__title = item['title']
         self.__pic = item['pic']
         self.__description = item['description']
-
-    def get_title(self):
-        return self.__title
-
-    def get_aid(self):
-        return self.__aid
 
     def get_title(self):
         return self.__title
@@ -24,6 +17,28 @@ class BiliBiliListItem(object):
 
     def get_description(self):
         return self.__description
+
+
+class BiliBiliAVItem(BiliBiliItem):
+    def __init__(self, item):
+        BiliBiliItem.__init__(self, item)
+        self.__pages = item['pages']
+        self.__cid = item['cid']
+
+    def get_page(self):
+        return self.__pages
+
+    def get_cid(self):
+        return self.__cid
+
+
+class BiliBiliListItem(BiliBiliItem):
+    def __init__(self, item):
+        BiliBiliItem.__init__(self, item)
+        self.__aid = item['aid']
+
+    def get_aid(self):
+        return self.__aid
 
 
 class BiliBiliList(object):

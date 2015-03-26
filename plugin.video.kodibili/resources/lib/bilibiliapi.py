@@ -50,3 +50,7 @@ class BiliBiliAPI(object):
     @staticmethod
     def get_list(tid):
         return bilibili.BiliBiliList(BiliBiliAPI.api('list', {'tid': tid}))
+
+    @staticmethod
+    def get_cid(aid):
+        pass
