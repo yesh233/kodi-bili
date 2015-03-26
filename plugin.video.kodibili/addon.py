@@ -30,7 +30,7 @@ def show_search():
 @plugin.route('/search/<stype>/<idx>/')
 def show_search_item(idx, stype):
     if stype == 'video':
-        show_play(idx)
+        return show_play(idx)
     # TODO stype == special
 
 @plugin.route('/subjects/')
@@ -57,22 +57,23 @@ def show_list(type_idx):
 
 @plugin.route('/play/<aid>/')
 def show_play(aid):
-    avitem = BiliBiliAPI.get_av_item(aid)
-    if avitem.get_pages() == 1:
+    av_item = BiliBiliAPI.get_av_item(aid)
+    if av_item.get_pages() == 1:
         player = xbmc.Player()
-        player.play(BiliBiliAPI.get_url(avitem.get_cid()))
+        player.play(BiliBiliAPI.get_url(av_item.get_cid()))
     else:
+        print 'hehe'
         items = [{'label': BiliBiliAPI.get_partname(aid, p),
                   'path': plugin.url_for('show_play_part', aid=aid, p=p)}
-                 for p in range(1, avitem.get_pages()+1)]
+                 for p in range(1, av_item.get_pages()+1)]
         return items
 
 
 @plugin.route('/play/<aid>/p/<p>/')
 def show_play_part(aid, p):
-    avitem = BiliBiliAPI.get_av_item(aid, p)
+    av_item = BiliBiliAPI.get_av_item(aid, p)
     player = xbmc.Player()
-    player.play(BiliBiliAPI.get_url(avitem.get_cid()))
+    player.play(BiliBiliAPI.get_url(av_item.get_cid()))
 
 
 if __name__ == '__main__':
