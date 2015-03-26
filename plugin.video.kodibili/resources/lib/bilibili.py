@@ -31,8 +31,8 @@ class BiliBiliList(object):
         self.__name = bilist['name']
         self.__pages = int(bilist['pages'])
         self.__num = int(bilist['num'])
-        self.__list = [BiliBiliListItem(item) for idx, item
-                       in sorted(bilist['list'].iteritems()) if idx != 'num']
+        self.__list = [BiliBiliListItem(bilist['list'][idx]) for idx
+                       in sorted(bilist['list']) if idx != 'num']
 
     def get_name(self):
         return self.__name
@@ -43,7 +43,9 @@ class BiliBiliList(object):
 
 class BiliBiliIndex(object):
     def __init__(self, biliindex):
-        self.__index = [BiliBiliList(biliindex[name]) for name in biliindex]
+        self.__index = dict([(name[4:], [BiliBiliListItem(biliindex[name][idx])
+                                         for idx in sorted(biliindex[name]) if idx != 'num'])
+                             for name in biliindex])
 
-    def get_lists(self):
-        return tuple(self.__index)
+    def get_index(self):
+        return tuple([(name, self.__index[name]) for name in sorted(self.__index)])

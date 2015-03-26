@@ -6,6 +6,7 @@ import requests
 import hashlib
 import json
 import urllib
+import bilibili
 
 
 class BiliBiliAPI(object):
@@ -38,3 +39,6 @@ class BiliBiliAPI(object):
         return json.loads(requests.get(BiliBiliAPI.__api_url+url, params=BiliBiliAPI.__calc_params(params),
                           headers=BiliBiliAPI.__headers).text)
 
+    @staticmethod
+    def get_type_name(tid):
+        return bilibili.BiliBiliList(BiliBiliAPI.api('list', {'tid':tid})).get_name()
