@@ -24,6 +24,8 @@ class BiliBiliAPITestCase(unittest.TestCase):
 
     def test_get_av_item(self):
         self.assertEqual(BiliBiliAPI.get_av_item(1845128).get_cid(), 2840169)
+        self.assertEqual(BiliBiliAPI.api('view', {'id': 637684, 'page': 2})['partname'],
+                         u'Episode 2~「赚著作权诉讼的钱？！」')
 
     def test_cid_api(self):
         self.assertEqual(BiliBiliAPI.cid_api(2840169).getElementsByTagName('url')[1].parentNode.nodeName,

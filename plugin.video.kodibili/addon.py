@@ -21,10 +21,17 @@ def show_search():
     keyboard = m.Keyboard('', u'请输入关键字进行搜索')
     keyboard.doModal()
     if keyboard.isConfirmed():
-        keyword = keyboard.getText()
-        items = [{'label': item.get_title()} for item in BiliBiliAPI.get_search(keyword).get_list()]
+        keyword = unicode(keyboard.getText(), 'utf-8')
+        items = [{'label': item.get_title(),
+                  'path': plugin.url_for('show_search_item', idx=item.get_id(), stype=item.get_type())}
+                 for item in BiliBiliAPI.get_search(keyword).get_list()]
         return items
 
+@plugin.route('/search/<stype>/<idx>/')
+def show_search_item(idx, stype):
+    if stype == 'video':
+        show_play(idx)
+    # TODO stype == special
 
 @plugin.route('/subjects/')
 def show_index_subjects():
@@ -54,6 +61,19 @@ def show_play(aid):
     if avitem.get_pages() == 1:
         player = xbmc.Player()
         player.play(BiliBiliAPI.get_url(avitem.get_cid()))
+    else:
+        items = [{'label': BiliBiliAPI.get_partname(aid, p),
+                  'path': plugin.url_for('show_play_part', aid=aid, p=p)}
+                 for p in range(1, avitem.get_pages()+1)]
+        return items
+
+
+@plugin.route('/play/<aid>/p/<p>/')
+def show_play_part(aid, p):
+    avitem = BiliBiliAPI.get_av_item(aid, p)
+    player = xbmc.Player()
+    player.play(BiliBiliAPI.get_url(avitem.get_cid()))
+
 
 if __name__ == '__main__':
     plugin.run()

@@ -63,8 +63,8 @@ class BiliBiliAPI(object):
         return bilibili.BiliBiliList(BiliBiliAPI.api('list', {'tid': tid}))
 
     @staticmethod
-    def get_av_item(aid):
-        return bilibili.BiliBiliAVItem(BiliBiliAPI.api('view', {'id': aid}))
+    def get_av_item(aid, page=1):
+        return bilibili.BiliBiliAVItem(BiliBiliAPI.api('view', {'id': aid, 'page': page}))
 
     @staticmethod
     def get_url(cid):
@@ -75,3 +75,7 @@ class BiliBiliAPI(object):
     @staticmethod
     def get_search(keyword):
         return bilibili.BiliBiliSearchList(BiliBiliAPI.api('search', {'keyword': keyword}))
+
+    @staticmethod
+    def get_partname(aid, p):
+        return BiliBiliAPI.api('view', {'id': aid, 'page': p})['partname']
