@@ -47,4 +47,4 @@ class BiliBiliAPI(object):
 
     @staticmethod
     def get_index():
-        return bilibili.BiliBiliIndex(BiliBiliAPI.api('index')).get_index()
+        return bilibili.BiliBiliIndex(BiliBiliAPI.api('index'))

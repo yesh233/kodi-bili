@@ -36,4 +36,4 @@ class BiliBiliIndexTestCase(unittest.TestCase):
         self.__bilindex = BiliBiliIndex(BiliBiliAPI.api('index'))
 
     def test_bilibiliindex(self):
-        self.assertEqual(self.__bilindex.get_index()[0][0], u'动画')
+        self.assertEqual(self.__bilindex.get_names()[0][0], u'动画')
