@@ -8,7 +8,7 @@ import json
 import urllib
 import bilibili
 from xml.dom import minidom
-
+import time
 
 class BiliBiliAPI(object):
     __app_key = '85eb6835b0a1034e'
@@ -78,4 +78,5 @@ class BiliBiliAPI(object):
 
     @staticmethod
     def get_partname(aid, p):
+        time.sleep(1)
         return BiliBiliAPI.api('view', {'id': aid, 'page': p})['partname']

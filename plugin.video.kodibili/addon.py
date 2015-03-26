@@ -31,7 +31,9 @@ def show_search():
 def show_search_item(idx, stype):
     if stype == 'video':
         return show_play(idx)
+    elif stype == 'special':
     # TODO stype == special
+        print 'special'
 
 @plugin.route('/subjects/')
 def show_index_subjects():
@@ -62,7 +64,6 @@ def show_play(aid):
         player = xbmc.Player()
         player.play(BiliBiliAPI.get_url(av_item.get_cid()))
     else:
-        print 'hehe'
         items = [{'label': BiliBiliAPI.get_partname(aid, p),
                   'path': plugin.url_for('show_play_part', aid=aid, p=p)}
                  for p in range(1, av_item.get_pages()+1)]
