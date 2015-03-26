@@ -2,6 +2,8 @@
 
 __author__ = 'Yang'
 
+import bilibiliapi
+
 
 class BiliBiliListItem(object):
     def __init__(self, item):
@@ -42,10 +44,16 @@ class BiliBiliList(object):
 
 
 class BiliBiliIndex(object):
+    __type_dict = {'type1': u'动画', 'type4': u'游戏', 'type5': u'娱乐', 'type11': u'电视剧', 'type13': u'番剧',
+                   'type23': u'电影', 'type36': u'科技', 'type119': u'鬼畜', 'type3': u'音乐', 'type129' :u'舞蹈'}
+
     def __init__(self, biliindex):
-        self.__index = dict([(name[4:], [BiliBiliListItem(biliindex[name][idx])
-                                         for idx in sorted(biliindex[name]) if idx != 'num'])
+        self.__index = dict([(name, [BiliBiliListItem(biliindex[name][idx])
+                                     for idx in sorted(biliindex[name]) if idx != 'num'])
                              for name in biliindex])
 
+    def __get_type_name(self, idx):
+        return BiliBiliIndex.__type_dict[idx]
+
     def get_index(self):
-        return tuple([(name, self.__index[name]) for name in sorted(self.__index)])
+        return tuple([(self.__get_type_name(name), self.__index[name]) for name in sorted(self.__index)])

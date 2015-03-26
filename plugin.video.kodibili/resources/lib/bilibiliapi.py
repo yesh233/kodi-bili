@@ -7,6 +7,7 @@ import hashlib
 import json
 import urllib
 import bilibili
+import time
 
 
 class BiliBiliAPI(object):
@@ -41,4 +42,5 @@ class BiliBiliAPI(object):
 
     @staticmethod
     def get_type_name(tid):
+       # time.sleep(100)
         return bilibili.BiliBiliList(BiliBiliAPI.api('list', {'tid':tid})).get_name()

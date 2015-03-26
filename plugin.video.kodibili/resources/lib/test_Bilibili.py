@@ -19,6 +19,9 @@ class BiliBiliAPITestCase(unittest.TestCase):
     def test_get_type_name(self):
         self.assertEqual(BiliBiliAPI.get_type_name(33), u'连载动画')
 
+    def no_get_type_name(self):
+        print BiliBiliAPI.get_type_name(129)
+
 
 class BiliBiliListTestCase(unittest.TestCase):
     def setUp(self):
@@ -33,4 +36,4 @@ class BiliBiliIndexTestCase(unittest.TestCase):
         self.__bilindex = BiliBiliIndex(BiliBiliAPI.api('index'))
 
     def test_bilibiliindex(self):
-        self.assertEqual(BiliBiliAPI.get_type_name(self.__bilindex.get_index()[0][0]), u'动画')
+        self.assertEqual(self.__bilindex.get_index()[0][0], u'动画')
