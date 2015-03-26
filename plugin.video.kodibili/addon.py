@@ -1,5 +1,5 @@
 from xbmcswift2 import Plugin
-
+from resources.lib.bilibili import *
 
 plugin = Plugin()
 
