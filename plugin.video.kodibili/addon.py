@@ -27,4 +27,6 @@ def show_index_subject(type_idx):
 
 @plugin.route('/list/<type_idx>/')
 def show_list(type_idx):
-    pass
+    bilist = BiliBiliAPI.get_list(type_idx)
+    items = [{'label': item.get_title()} for item in bilist.get_list()]
+    return items
