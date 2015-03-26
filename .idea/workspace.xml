@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="410423dc-3e2a-4260-bc4e-76b0d2f12d13" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugin.video.kodibili/addon.py" afterPath="$PROJECT_DIR$/plugin.video.kodibili/addon.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugin.video.kodibili/resources/lib/bilibili.py" afterPath="$PROJECT_DIR$/plugin.video.kodibili/resources/lib/bilibili.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="kodi-bili.iws" />
@@ -41,8 +42,8 @@
       <file leaf-file-name="bilibili.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plugin.video.kodibili/resources/lib/bilibili.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="667" max-vertical-offset="1054">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -61,10 +62,10 @@
       <file leaf-file-name="addon.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/plugin.video.kodibili/addon.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35142118" vertical-offset="0" max-vertical-offset="387">
-              <caret line="8" column="55" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.8242894" vertical-offset="174" max-vertical-offset="612">
+              <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
               <folding>
-                <element signature="e#0#29#0" expanded="true" />
+                <element signature="e#25#54#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -86,8 +87,8 @@
         <option value="$PROJECT_DIR$/plugin.video.kodibili/xbmcswift2.py" />
         <option value="$PROJECT_DIR$/plugin.video.kodibili/__init__.py" />
         <option value="$PROJECT_DIR$/plugin.video.kodibili/resources/lib/test_Bilibili.py" />
-        <option value="$PROJECT_DIR$/plugin.video.kodibili/resources/lib/bilibili.py" />
         <option value="$PROJECT_DIR$/plugin.video.kodibili/resources/lib/bilibiliapi.py" />
+        <option value="$PROJECT_DIR$/plugin.video.kodibili/resources/lib/bilibili.py" />
         <option value="$PROJECT_DIR$/plugin.video.kodibili/addon.py" />
       </list>
     </option>
@@ -153,6 +154,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="plugin.video.kodibili" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kodi-bili" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kodi-bili" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plugin.video.kodibili" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -486,7 +505,11 @@
       <created>1427335454554</created>
       <updated>1427335454554</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="modify  index &#10;">
+      <created>1427335697496</created>
+      <updated>1427335697496</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -557,7 +580,8 @@
     <MESSAGE value="add bilibili index" />
     <MESSAGE value="add bilibili type_dict&#10;" />
     <MESSAGE value="modify addon index&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify addon index&#10;" />
+    <MESSAGE value="modify  index &#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify  index &#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -681,14 +705,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.04" vertical-offset="0" max-vertical-offset="153">
-          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plugin.video.kodibili/resources/lib/bilibiliapi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="935">
@@ -699,20 +715,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.04" vertical-offset="0" max-vertical-offset="153">
+          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/plugin.video.kodibili/resources/lib/bilibili.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="412" max-vertical-offset="1054">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plugin.video.kodibili/addon.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35142118" vertical-offset="0" max-vertical-offset="387">
-          <caret line="8" column="55" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.8242894" vertical-offset="174" max-vertical-offset="612">
+          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#25#54#0" expanded="true" />
           </folding>
         </state>
       </provider>
