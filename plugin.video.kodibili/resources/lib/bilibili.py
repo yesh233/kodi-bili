@@ -41,6 +41,36 @@ class BiliBiliListItem(BiliBiliItem):
         return self.__aid
 
 
+class BiliBiliSearchItem(BiliBiliItem):
+    def __init__(self, item):
+        BiliBiliItem.__init__(self, item)
+        self.__type = item['type']
+        if self.__type == 'mylist':
+            self.__id = item['lid']
+        elif self.__type == 'video':
+            self.__id = item['aid']
+        elif self.__type == 'special':
+            self.__id = item['spid']
+
+    def get_type(self):
+        return self.__type
+
+    def get_id(self):
+        return self.__id
+
+
+class BiliBiliSearchList(object):
+    def __init__(self, item):
+        self.__num_pages = item['numPages']
+        self.__search_list = [BiliBiliSearchItem(it) for it in item['result']]
+
+    def get_list(self):
+        return tuple(self.__search_list)
+
+    def get_num_pages(self):
+        return self.__num_pages
+
+
 class BiliBiliList(object):
     def __init__(self, bilist):
         self.__name = bilist['name']

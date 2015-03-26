@@ -29,6 +29,9 @@ class BiliBiliAPITestCase(unittest.TestCase):
         self.assertEqual(BiliBiliAPI.cid_api(2840169).getElementsByTagName('url')[1].parentNode.nodeName,
                          'backup_url')
 
+    def test_get_search(self):
+        self.assertEquals(BiliBiliAPI.get_search(u'中文').get_list()[0].get_type(), 'special')
+
 
 class BiliBiliListTestCase(unittest.TestCase):
     def setUp(self):

@@ -2,16 +2,28 @@
 
 from xbmcswift2 import Plugin, xbmc
 from resources.lib.bilibiliapi import BiliBiliAPI
+import ChineseKeyboard as m
 bilindex = BiliBiliAPI.get_index()
 plugin = Plugin()
 
 
 @plugin.route('/')
 def index():
-    item = {'label': u'首页', 'path': plugin.url_for('show_index_subjects')}
+    item = [{'label': u'首页', 'path': plugin.url_for('show_index_subjects')},
+            {'label': u'搜索', 'path': plugin.url_for('show_search')}]
     items = [{'label': name, 'path': plugin.url_for('show_list', type_idx=idx)}
              for (name, idx) in bilindex.get_names()]
-    return [item]+items
+    return item + items
+
+
+@plugin.route('/search/')
+def show_search():
+    keyboard = m.Keyboard('', u'请输入关键字进行搜索')
+    keyboard.doModal()
+    if keyboard.isConfirmed():
+        keyword = keyboard.getText()
+        items = [{'label': item.get_title()} for item in BiliBiliAPI.get_search().get_list()]
+        return items
 
 
 @plugin.route('/subjects/')

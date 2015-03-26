@@ -71,3 +71,7 @@ class BiliBiliAPI(object):
         dom = BiliBiliAPI.cid_api(cid).getElementsByTagName('url')
         return 'stack://'+' , '.join([str(el.childNodes[0].data) for el in dom
                                       if el.parentNode.nodeName != 'backup_url'])
+
+    @staticmethod
+    def get_search(keyword):
+        return bilibili.BiliBiliSearchList(BiliBiliAPI.api('search', {'keyword': keyword}))
