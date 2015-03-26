@@ -22,7 +22,7 @@ def show_search():
     keyboard.doModal()
     if keyboard.isConfirmed():
         keyword = keyboard.getText()
-        items = [{'label': item.get_title()} for item in BiliBiliAPI.get_search().get_list()]
+        items = [{'label': item.get_title()} for item in BiliBiliAPI.get_search(keyword).get_list()]
         return items
 
 
