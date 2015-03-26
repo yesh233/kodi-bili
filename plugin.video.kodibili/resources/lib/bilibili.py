@@ -54,4 +54,7 @@ class BiliBiliIndex(object):
         return BiliBiliIndex.__type_dict[idx]
 
     def get_index(self):
-        return tuple([((self.__get_type_name(name), name[4:]), self.__index[name]) for name in sorted(self.__index)])
+        return tuple([(self.__get_type_name(name), name[4:]) for name in sorted(self.__index)])
+
+    def get_subject_list(self, idx):
+        return self.__index['type'+idx]
