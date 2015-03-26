@@ -6,7 +6,6 @@ bilindex = BiliBiliAPI.get_index()
 plugin = Plugin()
 
 
-
 @plugin.route('/')
 def index():
     item = {'label': u'首页', 'path': plugin.url_for('show_index_subjects')}
@@ -24,7 +23,7 @@ def show_index_subjects():
 
 @plugin.route('/subject/<type_idx>/')
 def show_index_subject(type_idx):
-    items = [{'label': item.get_title(), 'path': plugin.url_for('show_play'), 'is_playable': True}
+    items = [{'label': item.get_title(), 'path': plugin.url_for('show_play', aid=item.get_aid())}
              for item in bilindex.get_subject_list(type_idx)]
     return items
 
@@ -36,9 +35,11 @@ def show_list(type_idx):
     return items
 
 
-@plugin.route('/play/')
-def show_play():
-    pass
+@plugin.route('/play/<aid>/')
+def show_play(aid):
+    avitem = BiliBiliAPI.get_av_item(aid)
+    if avitem.get_pages() == 1:
+        plugin.set_resolved_url(BiliBiliAPI.get_url(avitem.get_cid()))
 
 if __name__ == '__main__':
     plugin.run()

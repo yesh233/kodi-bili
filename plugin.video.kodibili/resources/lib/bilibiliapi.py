@@ -7,6 +7,7 @@ import hashlib
 import json
 import urllib
 import bilibili
+from xml.dom import minidom
 
 
 class BiliBiliAPI(object):
@@ -16,6 +17,7 @@ class BiliBiliAPI(object):
     __ua = 'Biligrab / ' + __ver + ' (cnbeining@gmail.com)'
     __headers = {'User-Agent': __ua}
     __api_url = 'http://api.bilibili.com/'
+    __cid_url = 'http://interface.bilibili.tv/playurl'
 
     @staticmethod
     def __string_sign(string):
@@ -40,6 +42,15 @@ class BiliBiliAPI(object):
                           headers=BiliBiliAPI.__headers).text)
 
     @staticmethod
+    def cid_api_url(cid):
+        return requests.get(BiliBiliAPI.__cid_url, params=BiliBiliAPI.__calc_params({'cid': cid})).url
+
+    @staticmethod
+    def cid_api(cid):
+        return minidom.parseString(requests.get(BiliBiliAPI.__cid_url,
+                                                params=BiliBiliAPI.__calc_params({'cid': cid})).text)
+
+    @staticmethod
     def get_type_name(tid):
         return bilibili.BiliBiliList(BiliBiliAPI.api('list', {'tid': tid})).get_name()
 
@@ -52,5 +63,11 @@ class BiliBiliAPI(object):
         return bilibili.BiliBiliList(BiliBiliAPI.api('list', {'tid': tid}))
 
     @staticmethod
-    def get_cid(aid):
-        pass
+    def get_av_item(aid):
+        return bilibili.BiliBiliAVItem(BiliBiliAPI.api('view', {'id': aid}))
+
+    @staticmethod
+    def get_url(cid):
+        dom = BiliBiliAPI.cid_api(cid).getElementsByTagName('url')
+        return 'stack://'+' , '.join([str(el.childNodes[0].data) for el in dom
+                                      if el.parentNode.nodeName != 'backup_url'])

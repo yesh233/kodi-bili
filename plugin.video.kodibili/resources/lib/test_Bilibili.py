@@ -22,6 +22,13 @@ class BiliBiliAPITestCase(unittest.TestCase):
     def no_get_type_name(self):
         print BiliBiliAPI.get_type_name(129)
 
+    def test_get_av_item(self):
+        self.assertEqual(BiliBiliAPI.get_av_item(1845128).get_cid(), 2840169)
+
+    def test_cid_api(self):
+        self.assertEqual(BiliBiliAPI.cid_api(2840169).getElementsByTagName('url')[1].parentNode.nodeName,
+                         'backup_url')
+
 
 class BiliBiliListTestCase(unittest.TestCase):
     def setUp(self):
@@ -41,5 +48,5 @@ class BiliBiliIndexTestCase(unittest.TestCase):
 
 class BiliBiliAVItemTestCase(unittest.TestCase):
     def test(self):
-        print BiliBiliAPI.api('view', {'id': 2145972}).keys()
+        pass
 

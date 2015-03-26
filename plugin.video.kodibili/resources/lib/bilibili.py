@@ -25,7 +25,7 @@ class BiliBiliAVItem(BiliBiliItem):
         self.__pages = item['pages']
         self.__cid = item['cid']
 
-    def get_page(self):
+    def get_pages(self):
         return self.__pages
 
     def get_cid(self):
