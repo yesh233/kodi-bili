@@ -3,11 +3,10 @@
 from xbmcswift2 import Plugin
 from resources.lib.bilibiliapi import *
 plugin = Plugin()
-
+bilindex = BiliBiliAPI.get_index()
 
 @plugin.route('/')
 def index():
-    bilindex = BiliBiliAPI.get_index()
     items = [{'label': u'首页', 'path': plugin.url_for('show_index_subjects')}]
     items.extend([{'label': name, 'path': plugin.url_for('show_list', type_idx=idx)}
                   for (name, idx) in bilindex.get_names()])
@@ -16,7 +15,6 @@ def index():
 
 @plugin.route('/subjects/')
 def show_index_subjects():
-    bilindex = BiliBiliAPI.get_index()
     items = [{'label': name, 'path': plugin.url_for('show_index_subject', type_idx=idx)}
              for (name, idx) in bilindex.get_names()]
     return items
