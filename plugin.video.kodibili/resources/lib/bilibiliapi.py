@@ -44,3 +44,7 @@ class BiliBiliAPI(object):
     def get_type_name(tid):
        # time.sleep(100)
         return bilibili.BiliBiliList(BiliBiliAPI.api('list', {'tid':tid})).get_name()
+
+    @staticmethod
+    def get_index():
+        return bilibili.BiliBiliIndex(BiliBiliAPI.api('index')).get_index()

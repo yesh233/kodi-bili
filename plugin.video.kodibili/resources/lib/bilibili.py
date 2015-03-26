@@ -2,8 +2,6 @@
 
 __author__ = 'Yang'
 
-import bilibiliapi
-
 
 class BiliBiliListItem(object):
     def __init__(self, item):
