@@ -2,6 +2,9 @@ from xbmcswift2 import Plugin
 
 
 plugin = Plugin()
+from resources.lib.bilibiliapi import BiliBiliAPI
+plugin = Plugin()
+bilindex = BiliBiliAPI.get_index()
 
 
 @plugin.route('/')

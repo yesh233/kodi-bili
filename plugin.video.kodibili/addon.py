@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
 
 from xbmcswift2 import Plugin
-from resources.lib.bilibiliapi import *
-plugin = Plugin()
+from resources.lib.bilibiliapi import BiliBiliAPI
 bilindex = BiliBiliAPI.get_index()
+plugin = Plugin()
+
+
 
 @plugin.route('/')
 def index():
-    items = [{'label': u'首页', 'path': plugin.url_for('show_index_subjects')}]
-    items.extend([{'label': name, 'path': plugin.url_for('show_list', type_idx=idx)}
-                  for (name, idx) in bilindex.get_names()])
-    return items
+    item = [{'label': u'首页', 'path': plugin.url_for('show_index_subjects')}]
+    items = [{'label': name, 'path': plugin.url_for('show_list', type_idx=idx)}
+             for (name, idx) in bilindex.get_names()]
+    return [item]+items
 
 
 @plugin.route('/subjects/')
@@ -37,3 +39,7 @@ def show_list(type_idx):
 @plugin.route('/play/')
 def show_play():
     plugin.set_resolved_url('http://edge.v.iask.com.lxdns.com/114282802.hlv?KID=sina,viask&Expires=1427472000&ssig=oqDy%2Bajwnq')
+
+
+if __name__ == '__main__':
+    plugin.run()
