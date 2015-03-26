@@ -8,9 +8,9 @@ plugin = Plugin()
 @plugin.route('/')
 def index():
     bilindex = BiliBiliAPI.get_index()
-    items = [{'label': u'首页', 'path': plugin.url_for('show_index_subjects')}]
+    items = [{'label': u'a', 'path': plugin.url_for('show_index_subjects')}]
     items.extend([{'label': name, 'path': plugin.url_for('show_list', type_idx=idx, name=name)}
-                  for (name, idx), _ in bilindex])
+                  for (name, idx) in bilindex])
     return items
 
 
@@ -18,11 +18,11 @@ def index():
 def show_index_subjects():
     bilindex = BiliBiliAPI.get_index()
     items = [{'label': name, 'path': plugin.url_for('show_index_subject', type_idx=idx, name=name)}
-             for (name, idx), subject_list in bilindex]
+             for (name, idx) in bilindex]
     return items
 
 
-@plugin.route('/subjects/<name>/')
+@plugin.route('/subject/<name>/')
 def show_index_subject(type_idx, name):
     pass
 
