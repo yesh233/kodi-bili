@@ -7,7 +7,6 @@ import hashlib
 import json
 import urllib
 import bilibili
-import time
 
 
 class BiliBiliAPI(object):
