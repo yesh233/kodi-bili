@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from xbmcswift2 import Plugin, xbmc
+from xbmcswift2 import Plugin, xbmc, xbmcgui
 from resources.lib.bilibiliapi import BiliBiliAPI
 import ChineseKeyboard as m
 bilindex = BiliBiliAPI.get_index()
@@ -57,12 +57,17 @@ def show_list(type_idx):
     return items
 
 
+def __play(av_item):
+    player = xbmc.Player()
+    list_item = xbmcgui.ListItem(av_item.get_title(), thumbnailImage=av_item.get_pic())
+    list_item.setInfo('video', {'Title': av_item.get_title()})
+    player.play(BiliBiliAPI.get_url(av_item.get_cid()), list_item)
+
 @plugin.route('/play/<aid>/')
 def show_play(aid):
     av_item = BiliBiliAPI.get_av_item(aid)
     if av_item.get_pages() == 1:
-        player = xbmc.Player()
-        player.play(BiliBiliAPI.get_url(av_item.get_cid()))
+        __play(av_item)
     else:
         items = [{'label': BiliBiliAPI.get_partname(aid, p),
                   'path': plugin.url_for('show_play_part', aid=aid, p=p)}
@@ -73,8 +78,7 @@ def show_play(aid):
 @plugin.route('/play/<aid>/p/<p>/')
 def show_play_part(aid, p):
     av_item = BiliBiliAPI.get_av_item(aid, p)
-    player = xbmc.Player()
-    player.play(BiliBiliAPI.get_url(av_item.get_cid()))
+    __play(av_item)
 
 
 if __name__ == '__main__':
