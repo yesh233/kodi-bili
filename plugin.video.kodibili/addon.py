@@ -35,10 +35,14 @@ def show_search_list(keyword, page=1):
              for item in search_list.get_list()]
     if int(page) != 1:
         items.append({'label': u'上一页('+str(int(page)-1)+'/'+str(search_list.get_pages())+')',
-                      'path': plugin.url_for('show_search_list', keyword=keyword, page=int(page)-1)})
+                      'path': plugin.url_for('show_search_list',
+                                             keyword=unicode(keyword).encode('utf-8'),
+                                             page=int(page)-1)})
     if int(page) != int(search_list.get_pages()):
         items.append({'label': u'下一页('+str(int(page)+1)+'/'+str(search_list.get_pages())+')',
-                      'path': plugin.url_for('show_search_list', keyword=keyword, page=int(page)+1)})
+                      'path': plugin.url_for('show_search_list',
+                                             keyword=unicode(keyword).encode('utf-8'),
+                                             page=int(page)+1)})
     return items
 
 

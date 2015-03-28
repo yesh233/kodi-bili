@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="410423dc-3e2a-4260-bc4e-76b0d2f12d13" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugin.video.kodibili/addon.py" afterPath="$PROJECT_DIR$/plugin.video.kodibili/addon.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugin.video.kodibili/resources/lib/bilibiliapi.py" afterPath="$PROJECT_DIR$/plugin.video.kodibili/resources/lib/bilibiliapi.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="kodi-bili.iws" />
@@ -62,8 +61,8 @@
       <file leaf-file-name="addon.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/plugin.video.kodibili/addon.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.4292929" vertical-offset="1021" max-vertical-offset="1972">
-              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+            <state vertical-scroll-proportion="1.0286195" vertical-offset="137" max-vertical-offset="2040">
+              <caret line="44" column="45" selection-start-line="44" selection-start-column="45" selection-end-line="44" selection-end-column="45" />
               <folding>
                 <element signature="e#25#69#0" expanded="true" />
               </folding>
@@ -637,7 +636,11 @@
       <created>1427535030105</created>
       <updated>1427535030105</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="fix last page int">
+      <created>1427537819288</created>
+      <updated>1427537819288</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -746,7 +749,8 @@
     <MESSAGE value="fix speed" />
     <MESSAGE value="sleep" />
     <MESSAGE value="add pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="add pages" />
+    <MESSAGE value="fix last page int" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix last page int" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1167,8 +1171,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/plugin.video.kodibili/addon.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4292929" vertical-offset="1021" max-vertical-offset="1972">
-          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+        <state vertical-scroll-proportion="1.0286195" vertical-offset="137" max-vertical-offset="2040">
+          <caret line="44" column="45" selection-start-line="44" selection-start-column="45" selection-end-line="44" selection-end-column="45" />
           <folding>
             <element signature="e#25#69#0" expanded="true" />
           </folding>
