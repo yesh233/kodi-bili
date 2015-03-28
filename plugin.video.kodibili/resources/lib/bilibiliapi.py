@@ -61,7 +61,7 @@ class BiliBiliAPI(object):
 
     @staticmethod
     def get_list(tid, page=1):
-        return bilibili.BiliBiliList(BiliBiliAPI.api('list', {'tid': tid, 'page': page}))
+        return bilibili.BiliBiliList(BiliBiliAPI.api('list', {'tid': tid, 'page': page, 'order':'new'}))
 
     @staticmethod
     def get_av_item(aid, page=1):

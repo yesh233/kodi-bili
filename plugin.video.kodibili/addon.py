@@ -33,10 +33,10 @@ def show_search_list(keyword, page=1):
     items = [{'label': item.get_title(),
               'path': plugin.url_for('show_search_item', idx=item.get_id(), stype=item.get_type())}
              for item in search_list.get_list()]
-    if page != 1:
+    if int(page) != 1:
         items.append({'label': u'上一页('+str(int(page)-1)+'/'+str(search_list.get_pages())+')',
                       'path': plugin.url_for('show_search_list', keyword=keyword, page=int(page)-1)})
-    if page != search_list.get_pages():
+    if int(page) != int(search_list.get_pages()):
         items.append({'label': u'下一页('+str(int(page)+1)+'/'+str(search_list.get_pages())+')',
                       'path': plugin.url_for('show_search_list', keyword=keyword, page=int(page)+1)})
     return items
@@ -69,10 +69,10 @@ def show_list(type_idx, page=1):
     bilist = BiliBiliAPI.get_list(type_idx, page)
     items = [{'label': item.get_title(), 'path': plugin.url_for('show_play', aid=item.get_aid())}
              for item in bilist.get_list()]
-    if page != 1:
+    if int(page) != 1:
         items.append({'label': u'上一页('+str(int(page)-1)+'/'+str(bilist.get_pages())+')',
                       'path': plugin.url_for('show_list', type_idx=type_idx, page=int(page)-1)})
-    if page != bilist.get_pages():
+    if int(page) != int(bilist.get_pages()):
         items.append({'label': u'下一页('+str(int(page)+1)+'/'+str(bilist.get_pages())+')',
                       'path': plugin.url_for('show_list', type_idx=type_idx, page=int(page)+1)})
     return items
