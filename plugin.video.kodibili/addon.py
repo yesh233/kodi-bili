@@ -25,24 +25,22 @@ def show_search():
     keyboard.doModal()
     if keyboard.isConfirmed():
         keyword = unicode(keyboard.getText(), 'utf-8')
-        return show_search_list(keyword)
+        cache = plugin.get_storage('cache')
+        cache['keyword'] = keyword
+        return show_search_list()
 
-@plugin.route('/search/keyword/<keyword>/<page>')
-def show_search_list(keyword, page=1):
-    search_list = BiliBiliAPI.get_search(keyword, page)
+@plugin.route('/search/keyword/page/<page>')
+def show_search_list(page=1):
+    search_list = BiliBiliAPI.get_search(plugin.get_storage('cache')['keyword'], page)
     items = [{'label': item.get_title(),
               'path': plugin.url_for('show_search_item', idx=item.get_id(), stype=item.get_type())}
              for item in search_list.get_list()]
     if int(page) != 1:
         items.append({'label': u'上一页('+str(int(page)-1)+'/'+str(search_list.get_pages())+')',
-                      'path': plugin.url_for('show_search_list',
-                                             keyword=unicode(keyword).encode('utf-8'),
-                                             page=int(page)-1)})
+                      'path': plugin.url_for('show_search_list', page=int(page)-1)})
     if int(page) != int(search_list.get_pages()):
         items.append({'label': u'下一页('+str(int(page)+1)+'/'+str(search_list.get_pages())+')',
-                      'path': plugin.url_for('show_search_list',
-                                             keyword=unicode(keyword).encode('utf-8'),
-                                             page=int(page)+1)})
+                      'path': plugin.url_for('show_search_list', page=int(page)+1)})
     return items
 
 
