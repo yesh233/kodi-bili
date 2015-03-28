@@ -3,6 +3,9 @@
 from xbmcswift2 import Plugin, xbmc, xbmcgui
 from resources.lib.bilibiliapi import BiliBiliAPI
 import ChineseKeyboard as m
+import time
+
+
 bilindex = BiliBiliAPI.get_index()
 plugin = Plugin()
 
@@ -63,15 +66,19 @@ def __play(av_item):
     list_item.setInfo('video', {'Title': av_item.get_title()})
     player.play(BiliBiliAPI.get_url(av_item.get_cid()), list_item)
 
+
 @plugin.route('/play/<aid>/')
 def show_play(aid):
     av_item = BiliBiliAPI.get_av_item(aid)
     if av_item.get_pages() == 1:
         __play(av_item)
     else:
-        items = [{'label': BiliBiliAPI.get_partname(aid, p),
-                  'path': plugin.url_for('show_play_part', aid=aid, p=p)}
-                 for p in range(1, av_item.get_pages()+1)]
+        items = []
+        for p in range(1, av_item.get_pages()+1):
+            items.append({'label': BiliBiliAPI.get_partname(aid, p),
+                      'path': plugin.url_for('show_play_part', aid=aid, p=p)})
+            if p % 5 == 0:
+                time.sleep(1)
         return items
 
 
