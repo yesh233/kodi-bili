@@ -60,8 +60,8 @@ class BiliBiliAPI(object):
         return bilibili.BiliBiliIndex(BiliBiliAPI.api('index'))
 
     @staticmethod
-    def get_list(tid):
-        return bilibili.BiliBiliList(BiliBiliAPI.api('list', {'tid': tid}))
+    def get_list(tid, page=1):
+        return bilibili.BiliBiliList(BiliBiliAPI.api('list', {'tid': tid, 'page': page}))
 
     @staticmethod
     def get_av_item(aid, page=1):
@@ -74,8 +74,8 @@ class BiliBiliAPI(object):
                                       if el.parentNode.nodeName != 'backup_url'])
 
     @staticmethod
-    def get_search(keyword):
-        return bilibili.BiliBiliSearchList(BiliBiliAPI.api('search', {'keyword': keyword}))
+    def get_search(keyword, page=1):
+        return bilibili.BiliBiliSearchList(BiliBiliAPI.api('search', {'keyword': keyword, 'page': page}))
 
     @staticmethod
     def get_partname(aid, p):

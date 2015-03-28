@@ -61,14 +61,14 @@ class BiliBiliSearchItem(BiliBiliItem):
 
 class BiliBiliSearchList(object):
     def __init__(self, item):
-        self.__num_pages = item['numPages']
+        self.__pages = item['numPages']
         self.__search_list = [BiliBiliSearchItem(it) for it in item['result']]
 
     def get_list(self):
         return tuple(self.__search_list)
 
-    def get_num_pages(self):
-        return self.__num_pages
+    def get_pages(self):
+        return self.__pages
 
 
 class BiliBiliList(object):
@@ -84,6 +84,9 @@ class BiliBiliList(object):
 
     def get_list(self):
         return tuple(self.__list)
+
+    def get_pages(self):
+        return self.__pages
 
 
 class BiliBiliIndex(object):

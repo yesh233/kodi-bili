@@ -14,7 +14,7 @@ plugin = Plugin()
 def index():
     item = [{'label': u'首页', 'path': plugin.url_for('show_index_subjects')},
             {'label': u'搜索', 'path': plugin.url_for('show_search')}]
-    items = [{'label': name, 'path': plugin.url_for('show_list', type_idx=idx)}
+    items = [{'label': name, 'path': plugin.url_for('show_list_firstpage', type_idx=idx)}
              for (name, idx) in bilindex.get_names()]
     return item + items
 
@@ -25,12 +25,24 @@ def show_search():
     keyboard.doModal()
     if keyboard.isConfirmed():
         keyword = unicode(keyboard.getText(), 'utf-8')
-        items = [{'label': item.get_title(),
-                  'path': plugin.url_for('show_search_item', idx=item.get_id(), stype=item.get_type())}
-                 for item in BiliBiliAPI.get_search(keyword).get_list()]
-        return items
+        return show_search_list(keyword)
 
-@plugin.route('/search/<stype>/<idx>/')
+@plugin.route('/search/keyword/<keyword>/<page>')
+def show_search_list(keyword, page=1):
+    search_list = BiliBiliAPI.get_search(keyword, page)
+    items = [{'label': item.get_title(),
+              'path': plugin.url_for('show_search_item', idx=item.get_id(), stype=item.get_type())}
+             for item in search_list.get_list()]
+    if page != 1:
+        items.append({'label': u'上一页('+str(int(page)-1)+'/'+str(search_list.get_pages())+')',
+                      'path': plugin.url_for('show_search_list', keyword=keyword, page=int(page)-1)})
+    if page != search_list.get_pages():
+        items.append({'label': u'下一页('+str(int(page)+1)+'/'+str(search_list.get_pages())+')',
+                      'path': plugin.url_for('show_search_list', keyword=keyword, page=int(page)+1)})
+    return items
+
+
+@plugin.route('/search/item/<stype>/<idx>/')
 def show_search_item(idx, stype):
     if stype == 'video':
         return show_play(idx)
@@ -51,12 +63,18 @@ def show_index_subject(type_idx):
              for item in bilindex.get_subject_list(type_idx)]
     return items
 
-
-@plugin.route('/list/<type_idx>/')
-def show_list(type_idx):
-    bilist = BiliBiliAPI.get_list(type_idx)
+@plugin.route('/list/<type_idx>/<page>')
+@plugin.route('/list/<type_idx>/', name='show_list_firstpage')
+def show_list(type_idx, page=1):
+    bilist = BiliBiliAPI.get_list(type_idx, page)
     items = [{'label': item.get_title(), 'path': plugin.url_for('show_play', aid=item.get_aid())}
              for item in bilist.get_list()]
+    if page != 1:
+        items.append({'label': u'上一页('+str(int(page)-1)+'/'+str(bilist.get_pages())+')',
+                      'path': plugin.url_for('show_list', type_idx=type_idx, page=int(page)-1)})
+    if page != bilist.get_pages():
+        items.append({'label': u'下一页('+str(int(page)+1)+'/'+str(bilist.get_pages())+')',
+                      'path': plugin.url_for('show_list', type_idx=type_idx, page=int(page)+1)})
     return items
 
 
