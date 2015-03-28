@@ -10,6 +10,7 @@ import bilibili
 from xml.dom import minidom
 import time
 
+
 class BiliBiliAPI(object):
     __app_key = '85eb6835b0a1034e'
     __secret_key = '2ad42749773c441109bdc0191257a664'
@@ -17,7 +18,8 @@ class BiliBiliAPI(object):
     __ua = 'Biligrab / ' + __ver + ' (cnbeining@gmail.com)'
     __headers = {'User-Agent': __ua}
     __api_url = 'http://api.bilibili.com/'
-    __cid_url = 'http://interface.bilibili.tv/playurl'
+    __cid_url = 'http://interface.bilibili.com/playurl'
+    __play_headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'}
 
     @staticmethod
     def __string_sign(string):
@@ -48,7 +50,8 @@ class BiliBiliAPI(object):
     @staticmethod
     def cid_api(cid):
         return minidom.parseString(requests.get(BiliBiliAPI.__cid_url,
-                                                params=BiliBiliAPI.__calc_params({'cid': cid})).text)
+                                                params=BiliBiliAPI.__calc_params({'cid': cid}),
+                                                headers=BiliBiliAPI.__play_headers).text)
 
     @staticmethod
     def get_type_name(tid):
